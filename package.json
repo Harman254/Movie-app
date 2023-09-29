@@ -9,17 +9,23 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@nextui-org/react": "^2.1.13",
+    "@tanstack/react-query": "^4.35.3",
+    "axios": "^1.5.1",
+    "framer-motion": "^10.16.4",
+    "lucide-react": "^0.279.0",
+    "next": "latest",
+    "next-themes": "^0.2.1",
     "react": "latest",
-    "react-dom": "latest",
-    "next": "latest"
+    "react-dom": "latest"
   },
   "devDependencies": {
-    "typescript": "latest",
-    "@types/react": "latest",
     "@types/node": "latest",
+    "@types/react": "latest",
     "@types/react-dom": "latest",
     "autoprefixer": "latest",
     "postcss": "latest",
-    "tailwindcss": "latest"
+    "tailwindcss": "latest",
+    "typescript": "latest"
   }
 }
