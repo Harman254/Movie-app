@@ -2,28 +2,27 @@
 import React from "react";
 import { useState } from "react";
 import { MovieProps } from "@/types";
-import MovieCard from "./MovieCard";
-import axios from "axios";
-const Search = () => {
+
+type SearchProps = {
+  getSearchResults: (results: MovieProps[]) => void
+}
+
+const Search = ({getSearchResults}: SearchProps) => {
   const [query, setQuery] = useState("");
-  const [searchResult, setSearchResult] = useState<MovieProps[]>([]);
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const apiKey = process.env.API_KEY;
-     // !bug
-    try {
-      console.log(query);
-      const response = await axios.get(
-        `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${query}`
-      );
-      console.log(response);
-      const movieData = response.data.results;
-  
-      setSearchResult(movieData);
-    } catch (error) {
-      console.log('Error fetching search results:', error);
-    }
-  };
+
+    const res = await fetch(`/api/movies/search?query=${query}`)
+    console.log(res)
+    
+    const movies = await res.json()
+    console.log(movies)
+
+    getSearchResults(movies)
+    setQuery("")
+
+     
+  }
   
   return (
     <div className="flex flex-col container">
@@ -42,11 +41,7 @@ const Search = () => {
           Search
         </button>
       </form>
-      <div className="container flex">
-        {searchResult.map((movie) => (
-          <MovieCard key={movie.id} movie={movie} />
-        ))}
-      </div>
+      
     </div>
   );
 };

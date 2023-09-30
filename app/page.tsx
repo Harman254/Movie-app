@@ -1,8 +1,6 @@
 import MoviesList from "@/components/MoviesList.";
-import { fetchMovies } from "@/lib/utils";
 
 export default async function Home() {
-  const result = await fetchMovies();
 
  
 
@@ -13,7 +11,7 @@ export default async function Home() {
           Moviebase
         </h1>
       </div>
-      <MoviesList data={result} />
+      <MoviesList  />
     </div>
   );
 }

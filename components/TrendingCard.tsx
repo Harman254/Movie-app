@@ -1,29 +1,25 @@
-"use client"
 import React from 'react'
-import {Image} from "@nextui-org/react";
 import {Card, CardHeader, CardBody, CardFooter} from "@nextui-org/react";
-import { type MovieProps } from '@/types';
-import Link from 'next/link';
+import {Image} from "@nextui-org/react";
+import Link from "next/link"
+import { TVShowProps } from '@/types';
 
 
-
-type MovieCardProps = {
-  movie: MovieProps;
+type Props = {
+    tvshow: TVShowProps
 }
 
+const TrendingCard:React.FC<Props> = ({tvshow}) => {
 
-
-const MovieCard: React.FC<MovieCardProps> = ( {movie}) => {
- const {id, title, release_date,popularity, poster_path} = movie
-
+    const {name, popularity, first_air_date, poster_path, id } = tvshow
   return (
-    <Link href={`/movies/${id}`}>
+    <Link href={`/trending/${id}`}>
     <Card  className="p-4 hover:scale-105 hover:shadow-2xl hover:dark:shadow-gray-600 transform transition-transform ">
       
       <CardHeader className="pb-0 pt-2 px-4 flex-col items-start">
-        <p className="text-xl mt-3 capitalize wrap font-bold">{ title}</p>
+        <p className="text-xl mt-3 capitalize truncate font-bold">{ name}</p>
         <h4 className="font-bold text-large">Popularity:{popularity}</h4>
-        <p className="text-default-500 font-semibold">Released:{release_date}</p>
+        <p className="text-default-500 font-semibold">First air date:{first_air_date}</p>
       </CardHeader>
       <CardBody className="overflow-visible py-2">
         <Image
@@ -40,4 +36,4 @@ const MovieCard: React.FC<MovieCardProps> = ( {movie}) => {
   )
 }
 
-export default MovieCard
+export default TrendingCard

@@ -25,7 +25,7 @@ const Nav: React.FC<Props> = () => {
         
         <NavbarItem>
           
-            <Link href='/trending' className='font-bold'>Trending</Link>
+            <Link href='/trending' className='font-bold'>Trending TV</Link>
           
         </NavbarItem>
         

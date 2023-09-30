@@ -7,15 +7,21 @@ import MovieCard from "./MovieCard";
 
 
 type Props = {
-    data: MovieProps[]
 };
 
-const MoviesList: React.FC<Props> = ({data}) => {
+const MoviesList: React.FC<Props> = () => {
   const [movies, setMovies] = useState<MovieProps[]>([]);
 
 
     useEffect(() => {
-        setMovies(data)
+      const getMovies = async() => {
+        const res = await fetch("/api/movies")
+        console.log(res)
+        const movies = await res.json()
+        setMovies(movies)
+      }
+
+      getMovies()
      
     }, [])
     
@@ -24,7 +30,7 @@ const MoviesList: React.FC<Props> = ({data}) => {
 
   return (
     <div className="flex flex-col justify-center p-3 gap-4 container">
-      <Search setMovies={setMovies}  />
+      <Search getSearchResults={(results: MovieProps[]) => setMovies(results)}  />
       <div className=" container grid grid-cols-4 gap-3">
       {movies.map((movie: MovieProps) => (
         <MovieCard key={movie.id} movie={movie} />
